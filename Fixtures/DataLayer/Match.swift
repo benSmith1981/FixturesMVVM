@@ -8,9 +8,22 @@ struct Response: Codable {
 struct Match: Codable {
     let homeTeam: Name
     let awayTeam: Name
+    let utcDate: String?
+    let status: String?
+    let score: Score
+
 }
 struct Name: Codable {
     let name: String
+}
+
+struct Score: Codable {
+    let fullTime: FullTime
+}
+
+struct FullTime: Codable {
+    var homeTeam: Int?
+    var awayTeam: Int?
 }
 
 class DataAccess {
@@ -19,15 +32,6 @@ class DataAccess {
     
     init(baseURL: String = "http://api.football-data.org/v2/competitions/ELC/matches") {
         self.baseUrl = baseURL
-        
-//        guard let homeTeam = json["homeTeam"] as? [String: Any],
-//            let awayTeam = json["awayTeam"] as? [String: Any],
-//            let homeTeamName = awayTeam["name"] as? String,
-//            let awayTeamName = homeTeam["name"] as? String
-//            else { return nil }
-//
-//        self.homeTeamName = homeTeamName
-//        self.awayTeamName = awayTeamName
     }
 
     func fetchMatches(completionHandler: @escaping (([Match]?) -> Void)) {
@@ -58,16 +62,16 @@ class DataAccess {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
                 let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
-                if let jsonResult = jsonResult as? Dictionary<String, AnyObject>,
-                    let connections = jsonResult["matches"] as? [Any] {
+                if let jsonResult = jsonResult as? Dictionary<String, AnyObject>{//,
+                   // let connections = jsonResult["matches"] as? [Any] {
                     // do stuff
-                    let jsonData = try JSONSerialization.data(withJSONObject: connections, options: [])
+                    let jsonData = try JSONSerialization.data(withJSONObject: jsonResult, options: [])
                     
                     do {
                         let decoder = JSONDecoder()
-                        let response = try decoder.decode([Match].self,
+                        let response = try decoder.decode(Response.self,
                                                                 from: jsonData )
-                        onCompletion(response)
+                        onCompletion(response.matches)
                         
                     } catch {
                         onCompletion([])

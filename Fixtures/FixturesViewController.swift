@@ -19,6 +19,7 @@ class FixturesViewController: UITableViewController {
                                                             let fixtureCell = cell as! FixtureTableViewCell
                                                             fixtureCell.homeTeamNameLabel.text = viewModel.homeTeam
                                                             fixtureCell.awayTeamNameLabel.text = viewModel.awayTeam
+                                                            fixtureCell.time.text = viewModel.matchDate?.getTime()
                 })
                 self.tableView.dataSource = self.dataSource
                 self.tableView.reloadData()
@@ -34,4 +35,8 @@ class FixtureTableViewCell: UITableViewCell {
 
     @IBOutlet weak var homeTeamNameLabel: UILabel!
     @IBOutlet weak var awayTeamNameLabel: UILabel!
+    @IBOutlet weak var countDown: UILabel!
+    @IBOutlet weak var time: UILabel!
+    @IBOutlet weak var stadium: UILabel!
+
 }
