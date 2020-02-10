@@ -13,9 +13,11 @@ class FixturesViewController: UITableViewController {
         MatchViewModel.init().getMatches { (matchModels, success) in
             if success {
                 self.matchModels = matchModels
-                self.dataSource = TableViewDataSource.init(cellIdentifier: "fixture",
+
+                self.dataSource = TableViewDataSource.init(headerCellIdentifier: "MatchHeaderTableViewCell",
+                                                           cellIdentifier: "fixture",
                                                            items: self.matchModels,
-                                                           configureCell: { (cell, viewModel) in
+                                                           configureCell: { (cell, viewModel, indexPath) in
                                                             
                                                             let fixtureCell = cell as! FixtureTableViewCell
                                                             fixtureCell.homeTeamNameLabel.text = viewModel.homeTeam
@@ -28,10 +30,22 @@ class FixturesViewController: UITableViewController {
                                                             
                                                             let scoreHome = viewModel.homeTeamScore == -1 ? "" : "\(viewModel.homeTeamScore!)"
                                                             fixtureCell.scoreHome.text = scoreHome
+                                                            fixtureCell.stadium.text = viewModel.homeTeam
+                                                            if viewModel.status == matchStatus.FINISHED {
+                                                                cell.backgroundColor = UIColor.orange
+                                                            }
+                                                            self.tableView.headerView(forSection: indexPath.section)
+
+                }, configureHeaderCell: { (headerCell, viewModel, section) in
+                    let headerCell2 = headerCell as! MatchHeaderTableViewCell
+                    headerCell2.dateLabel.text = viewModel.matchDate.getDate()
+                    headerCell2.championshipLabel.text = viewModel.competition
 
                 })
-                
+                let profileNib = UINib(nibName: "MatchHeaderTableViewCell", bundle: nil)
+                self.tableView.register(profileNib, forCellReuseIdentifier: "MatchHeaderTableViewCell")
                 self.tableView.dataSource = self.dataSource
+                self.tableView.delegate = self.dataSource
                 self.tableView.reloadData()
             }
         }

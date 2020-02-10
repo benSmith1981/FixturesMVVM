@@ -4,7 +4,14 @@ import Alamofire
 
 struct Response: Codable {
     let matches: [Match]
+    let competition: Competition
+
 }
+
+struct Competition: Codable {
+    let name: Name
+}
+
 struct Match: Codable {
     let homeTeam: Name
     let awayTeam: Name
@@ -34,7 +41,7 @@ class DataAccess {
         self.baseUrl = baseURL
     }
 
-    func fetchMatches(completionHandler: @escaping (([Match]?) -> Void)) {
+    func fetchMatches(completionHandler: @escaping ((Response?) -> Void)) {
         let headers: HTTPHeaders = [
             "X-Auth-Token": "3ee966f08dbd47fb8bf5c3d378d541a5"
         ]
@@ -46,7 +53,7 @@ class DataAccess {
                 let decoder = JSONDecoder()
                 do {
                     let response = try decoder.decode(Response.self, from: jsonData)
-                    return completionHandler(response.matches)
+                    return completionHandler(response)
                 } catch {
                     print("Unexpected error: JSON parsing error")
                     return completionHandler([])
@@ -57,7 +64,7 @@ class DataAccess {
         }
     }
     
-    func fetchFromStaticJSON(onCompletion: @escaping ([Match]?) -> Void) {
+    func fetchFromStaticJSON(onCompletion: @escaping (Response?) -> Void) {
         if let path = Bundle.main.path(forResource: "fixtures", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
@@ -71,7 +78,7 @@ class DataAccess {
                         let decoder = JSONDecoder()
                         let response = try decoder.decode(Response.self,
                                                                 from: jsonData )
-                        onCompletion(response.matches)
+                        onCompletion(response)
                         
                     } catch {
                         onCompletion([])

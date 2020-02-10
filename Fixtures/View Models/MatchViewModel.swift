@@ -17,9 +17,10 @@ class MatchViewModel {
     
     func getMatches(onCompletion: @escaping ([MatchModel], Bool) -> Void) {
         let dataService = DataAccess.init()
-        dataService.fetchFromStaticJSON{ (matches) in
-            self.matchModels = matches?.compactMap({ result in
-                return MatchModel.init(homeTeam: result.homeTeam.name,
+        dataService.fetchFromStaticJSON{ (response) in
+            self.matchModels = response?.matches.compactMap({ result in
+                return MatchModel.init(competition: response?.competition.name,
+                                       homeTeam: result.homeTeam.name,
                                        awayTeam: result.awayTeam.name,
                                        awayTeamScore: result.score.fullTime.awayTeam ?? -1,
                                        homeTeamScore: result.score.fullTime.homeTeam ?? -1,
@@ -68,6 +69,8 @@ enum matchStatus: String {
 }
 
 class MatchModel {
+    var competition: String?
+
     var homeTeam: String?
     var awayTeam: String?
     var awayTeamScore: Int?
@@ -75,7 +78,8 @@ class MatchModel {
     var status: matchStatus?
     var matchDate: Date
 
-    init(homeTeam: String, awayTeam: String, awayTeamScore: Int, homeTeamScore: Int, matchDate: Date, status: matchStatus) {
+    init(competition: String, homeTeam: String, awayTeam: String, awayTeamScore: Int, homeTeamScore: Int, matchDate: Date, status: matchStatus) {
+        self.competition = competition
         self.awayTeam = awayTeam
         self.homeTeam = homeTeam
         self.awayTeamScore = awayTeamScore
