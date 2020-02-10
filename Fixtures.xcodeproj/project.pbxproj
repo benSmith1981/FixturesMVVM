@@ -14,6 +14,7 @@
 		900C599323F1A411005188EC /* MatchHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 900C599223F1A411005188EC /* MatchHeaderTableViewCell.xib */; };
 		900C599D23F1B215005188EC /* FixturesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900C599C23F1B215005188EC /* FixturesTests.swift */; };
 		900C59A623F1B24D005188EC /* FixtureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900C59A523F1B24D005188EC /* FixtureTableViewCell.swift */; };
+		900C59AC23F1D292005188EC /* testFixtures.json in Resources */ = {isa = PBXBuildFile; fileRef = 900C59AB23F1D292005188EC /* testFixtures.json */; };
 		90EF97C123E3470B00EA138A /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EF97C023E3470B00EA138A /* TableViewDataSource.swift */; };
 		90EF97C423E34CFF00EA138A /* MatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EF97C323E34CFF00EA138A /* MatchViewModel.swift */; };
 		D8298DE4213D798100051654 /* DataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8298DE3213D798100051654 /* DataAccess.swift */; };
@@ -46,6 +47,7 @@
 		900C599C23F1B215005188EC /* FixturesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesTests.swift; sourceTree = "<group>"; };
 		900C599E23F1B215005188EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		900C59A523F1B24D005188EC /* FixtureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureTableViewCell.swift; sourceTree = "<group>"; };
+		900C59AB23F1D292005188EC /* testFixtures.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testFixtures.json; sourceTree = "<group>"; };
 		90EF97C023E3470B00EA138A /* TableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		90EF97C323E34CFF00EA138A /* MatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewModel.swift; sourceTree = "<group>"; };
 		D8298DE3213D798100051654 /* DataAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAccess.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		90EF97C723E366EC00EA138A /* DataLayer */ = {
 			isa = PBXGroup;
 			children = (
+				900C59AB23F1D292005188EC /* testFixtures.json */,
 				900C598823EDB6BA005188EC /* fixtures.json */,
 				D8298DE3213D798100051654 /* DataAccess.swift */,
 			);
@@ -167,11 +170,11 @@
 				90EF97C223E34CDD00EA138A /* View Models */,
 				90EF97C023E3470B00EA138A /* TableViewDataSource.swift */,
 				D87E87D5213D6CF800D81EA0 /* AppDelegate.swift */,
-				D87E87D7213D6CF800D81EA0 /* FixturesViewController.swift */,
 				D87E87D9213D6CF800D81EA0 /* Main.storyboard */,
 				D87E87DC213D6CF900D81EA0 /* Assets.xcassets */,
 				D87E87DE213D6CF900D81EA0 /* LaunchScreen.storyboard */,
 				D87E87E1213D6CF900D81EA0 /* Info.plist */,
+				D87E87D7213D6CF800D81EA0 /* FixturesViewController.swift */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				D87E87DB213D6CF800D81EA0 /* Main.storyboard in Resources */,
 				900C599323F1A411005188EC /* MatchHeaderTableViewCell.xib in Resources */,
 				900C598923EDB6BA005188EC /* fixtures.json in Resources */,
+				900C59AC23F1D292005188EC /* testFixtures.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

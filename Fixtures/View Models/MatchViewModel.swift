@@ -8,6 +8,7 @@
 
 import Foundation
 protocol ViewModel {
+    //implement these in fututur to add validation behaviour to the view controller or table view
 //    var validationError: [ValidationError] { get set}
 //    var isValid: Bool { mutating get}
 }

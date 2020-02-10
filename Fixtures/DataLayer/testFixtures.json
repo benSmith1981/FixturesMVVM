@@ -1,0 +1,145 @@
+
+{
+	"count": 552,
+	"filters": {},
+	"competition": {
+		"id": 2016,
+		"area": {
+			"id": 2072,
+			"name": "England"
+		},
+		"name": "Championship",
+		"code": "ELC",
+		"plan": "TIER_ONE",
+		"lastUpdated": "2020-02-07T00:00:06Z"
+	},
+	"matches": [{
+			"id": 268925,
+			"season": {
+				"id": 503,
+				"startDate": "2019-08-02",
+				"endDate": "2020-05-27",
+				"currentMatchday": 31
+			},
+			"utcDate": "2019-08-02T18:45:00Z",
+			"status": "SCHEDULED",
+			"matchday": 1,
+			"stage": "REGULAR_SEASON",
+			"group": "Regular Season",
+			"lastUpdated": "2020-09-26T15:33:24Z",
+			"score": {
+				"winner": "DRAW",
+				"duration": "REGULAR",
+				"fullTime": {
+					"homeTeam": 3,
+					"awayTeam": 3
+				},
+				"halfTime": {
+					"homeTeam": 2,
+					"awayTeam": 2
+				},
+				"extraTime": {
+					"homeTeam": null,
+					"awayTeam": null
+				},
+				"penalties": {
+					"homeTeam": null,
+					"awayTeam": null
+				}
+			},
+			"homeTeam": {
+				"id": 389,
+				"name": "Luton Town FC"
+			},
+			"awayTeam": {
+				"id": 343,
+				"name": "Middlesbrough FC"
+			},
+			"referees": [{
+					"id": 11287,
+					"name": "Oliver Langford",
+					"nationality": null
+				},
+				{
+					"id": 11333,
+					"name": "Akil Howson",
+					"nationality": null
+				},
+				{
+					"id": 11311,
+					"name": "Paul Hodskinson",
+					"nationality": null
+				},
+				{
+					"id": 11324,
+					"name": "James Linington",
+					"nationality": null
+				}
+			]
+		},
+		{
+			"id": 268926,
+			"season": {
+				"id": 503,
+				"startDate": "2019-08-02",
+				"endDate": "2020-05-27",
+				"currentMatchday": 31
+			},
+			"utcDate": "2019-08-03T14:00:00Z",
+			"status": "FINISHED",
+			"matchday": 1,
+			"stage": "REGULAR_SEASON",
+			"group": "Regular Season",
+			"lastUpdated": "2019-09-26T15:33:24Z",
+			"score": {
+				"winner": "AWAY_TEAM",
+				"duration": "REGULAR",
+				"fullTime": {
+					"homeTeam": 1,
+					"awayTeam": 2
+				},
+				"halfTime": {
+					"homeTeam": 0,
+					"awayTeam": 1
+				},
+				"extraTime": {
+					"homeTeam": null,
+					"awayTeam": null
+				},
+				"penalties": {
+					"homeTeam": null,
+					"awayTeam": null
+				}
+			},
+			"homeTeam": {
+				"id": 59,
+				"name": "Blackburn Rovers FC"
+			},
+			"awayTeam": {
+				"id": 348,
+				"name": "Charlton Athletic FC"
+			},
+			"referees": [{
+					"id": 11476,
+					"name": "Andy Woolmer",
+					"nationality": null
+				},
+				{
+					"id": 11475,
+					"name": "Rob Merchant",
+					"nationality": null
+				},
+				{
+					"id": 11470,
+					"name": "James Wilson",
+					"nationality": null
+				},
+				{
+					"id": 11566,
+					"name": "Daniel Middleton",
+					"nationality": null
+				}
+			]
+		}
+	]
+}

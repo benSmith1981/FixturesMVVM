@@ -107,6 +107,32 @@ class FixturesTests: XCTestCase {
             XCTAssertTrue(self.fixturesVC.matchModels.count > 0)
         }
     }
+    
+    func testSortingScheduledResults() {
+        let exp = expectation(description: "Check we test data correctly")
+
+        var scheduled: [MatchModel] = []
+        var finished: [MatchModel] = []
+
+        DataAccess.init().fetchFromStaticJSON(resourceName: "testFixtures") { (response, connectionError) in
+            exp.fulfill()
+            var matchModels = response?.matches.compactMap({ result in
+                return MatchModel.init(competition: response?.competition.name ?? "",
+                                       homeTeam: result.homeTeam.name,
+                                       awayTeam: result.awayTeam.name,
+                                       awayTeamScore: result.score.fullTime.awayTeam ?? -1,
+                                       homeTeamScore: result.score.fullTime.homeTeam ?? -1,
+                                       matchDate: result.utcDate.dateWithISO8601String() ?? Date(),
+                                       status: matchStatus.status(status: result.status ?? ""))
+            }) ?? []
+            
+            scheduled = MatchViewModel.init().sortScheduledMatches(matchModels: matchModels)
+            finished = MatchViewModel.init().sortFinishedMatches(matchModels: matchModels)
+        }
+        waitForExpectations(timeout: 10) { error in
+            XCTAssertTrue(scheduled.count == 1)
+        }
+    }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.

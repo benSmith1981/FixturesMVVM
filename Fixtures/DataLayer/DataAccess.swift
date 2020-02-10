@@ -71,8 +71,8 @@ class DataAccess {
         }
     }
     
-    func fetchFromStaticJSON(onCompletion: @escaping (Response?,UrlConnectionError?) -> Void) {
-        if let path = Bundle.main.path(forResource: "fixtures", ofType: "json") {
+    func fetchFromStaticJSON(resourceName: String, onCompletion: @escaping (Response?,UrlConnectionError?) -> Void) {
+        if let path = Bundle.main.path(forResource: resourceName, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
                 let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
