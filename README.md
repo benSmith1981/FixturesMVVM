@@ -8,7 +8,8 @@ Unit tests, as important to try and write as much of these as you can
 - If you had more time, what would you have tackled next? - what would you change about the structure of the code?
 
 The timer count down just used date for now.
-I spent a lot of time getting used to MVVM structure and checking it worked. 
+Getting design better , fonts and things.
+I spent a lot of time getting used to MVVM structure and checking it worked, so I think I changed the structure to this
 
 - What bugs did you find but not fix?
 
