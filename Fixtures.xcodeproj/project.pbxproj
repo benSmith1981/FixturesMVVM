@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		2685D7EB3C530F641023C614 /* Pods_Fixtures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D7EDF1A26E818EA707D1F67 /* Pods_Fixtures.framework */; };
 		900C598923EDB6BA005188EC /* fixtures.json in Resources */ = {isa = PBXBuildFile; fileRef = 900C598823EDB6BA005188EC /* fixtures.json */; };
-		900C598B23EF24EF005188EC /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900C598A23EF24EE005188EC /* DateExtension.swift */; };
-		900C598D23EF2884005188EC /* DateTodayFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900C598C23EF2884005188EC /* DateTodayFormatter.swift */; };
+		900C598D23EF2884005188EC /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900C598C23EF2884005188EC /* NSDateExtension.swift */; };
 		90EF97C123E3470B00EA138A /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EF97C023E3470B00EA138A /* TableViewDataSource.swift */; };
 		90EF97C423E34CFF00EA138A /* MatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EF97C323E34CFF00EA138A /* MatchViewModel.swift */; };
 		D8298DE4213D798100051654 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8298DE3213D798100051654 /* Match.swift */; };
@@ -26,8 +25,7 @@
 		2D7EDF1A26E818EA707D1F67 /* Pods_Fixtures.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fixtures.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E997DC7474396999B3A62F6 /* Pods-Fixtures.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fixtures.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fixtures/Pods-Fixtures.debug.xcconfig"; sourceTree = "<group>"; };
 		900C598823EDB6BA005188EC /* fixtures.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fixtures.json; sourceTree = SOURCE_ROOT; };
-		900C598A23EF24EE005188EC /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
-		900C598C23EF2884005188EC /* DateTodayFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTodayFormatter.swift; sourceTree = "<group>"; };
+		900C598C23EF2884005188EC /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
 		90EF97C023E3470B00EA138A /* TableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		90EF97C323E34CFF00EA138A /* MatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewModel.swift; sourceTree = "<group>"; };
 		D8298DE3213D798100051654 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
@@ -107,8 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				900C598823EDB6BA005188EC /* fixtures.json */,
-				900C598C23EF2884005188EC /* DateTodayFormatter.swift */,
-				900C598A23EF24EE005188EC /* DateExtension.swift */,
+				900C598C23EF2884005188EC /* NSDateExtension.swift */,
 				90EF97C723E366EC00EA138A /* DataLayer */,
 				90EF97C223E34CDD00EA138A /* View Models */,
 				90EF97C023E3470B00EA138A /* TableViewDataSource.swift */,
@@ -235,11 +232,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D87E87D8213D6CF800D81EA0 /* FixturesViewController.swift in Sources */,
-				900C598B23EF24EF005188EC /* DateExtension.swift in Sources */,
 				D87E87D6213D6CF800D81EA0 /* AppDelegate.swift in Sources */,
 				90EF97C423E34CFF00EA138A /* MatchViewModel.swift in Sources */,
 				90EF97C123E3470B00EA138A /* TableViewDataSource.swift in Sources */,
-				900C598D23EF2884005188EC /* DateTodayFormatter.swift in Sources */,
+				900C598D23EF2884005188EC /* NSDateExtension.swift in Sources */,
 				D8298DE4213D798100051654 /* Match.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,7 +8,7 @@ struct Response: Codable {
 struct Match: Codable {
     let homeTeam: Name
     let awayTeam: Name
-    let utcDate: String?
+    let utcDate: String
     let status: String?
     let score: Score
 

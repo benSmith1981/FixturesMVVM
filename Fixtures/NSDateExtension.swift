@@ -30,24 +30,31 @@ class DateTodayFormatter {
     }
 }
 
-extension NSDate {
-    class func dateWithISO8601String(dateString: String) -> NSDate? {
-        var formattedDateString = dateString
+extension String {
+    func dateWithISO8601String() -> Date? {
+        var formattedDateString = self
         
-        if dateString.hasSuffix("Z") {
-            let lastIndex = dateString.indices.last!
-            formattedDateString = dateString.substring(to: lastIndex) + "-000"
+        if self.hasSuffix("Z") {
+            let lastIndex = self.indices.last!
+            formattedDateString = self.substring(to: lastIndex) + "-000"
         }
-        return dateFromString(str: formattedDateString, withFormat:"yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ssZZZ"
+        return dateFormatter.date(from: formattedDateString)
+
+        //dateFromString(str: formattedDateString, withFormat:"yyyy-MM-dd'T'HH:mm:ss.SSSZ")
     }
     
-    class func dateFromString(str: String, withFormat dateFormat: String) -> NSDate? {
+    func dateFromString(str: String, withFormat dateFormat: String) -> NSDate? {
         let formatter = DateFormatter()
         formatter.dateFormat = dateFormat
         formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX") as Locale?
         return formatter.date(from: str) as NSDate?
     }
+}
     
+extension Date {
+
     func toString() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMMM yyyy - HH:mm"

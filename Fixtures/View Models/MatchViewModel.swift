@@ -17,22 +17,54 @@ class MatchViewModel {
     
     func getMatches(onCompletion: @escaping ([MatchModel], Bool) -> Void) {
         let dataService = DataAccess.init()
-        dataService.fetchMatches { (matches) in
+        dataService.fetchFromStaticJSON{ (matches) in
             self.matchModels = matches?.compactMap({ result in
                 return MatchModel.init(homeTeam: result.homeTeam.name,
                                        awayTeam: result.awayTeam.name,
-                                       awayTeamScore: result.score.fullTime.awayTeam ?? 0,
-                                       homeTeamScore: result.score.fullTime.homeTeam ?? 0,
-                                       matchDate: NSDate.dateWithISO8601String(dateString: result.utcDate!) ?? NSDate())
+                                       awayTeamScore: result.score.fullTime.awayTeam ?? -1,
+                                       homeTeamScore: result.score.fullTime.homeTeam ?? -1,
+                                       matchDate: result.utcDate.dateWithISO8601String() ?? Date(),
+                                       status: matchStatus.status(status: result.status ?? ""))
             }) ?? []
             
+            let scheduled = self.sortScheduledMatches(matchModels: self.matchModels)
+            let finished = self.sortFinishedMatches(matchModels: self.matchModels)
             DispatchQueue.main.async {
-                onCompletion(self.matchModels, true)
+                onCompletion( finished + scheduled, true)
             }
         }
 
     }
+    
+    func sortScheduledMatches(matchModels: [MatchModel]) -> [MatchModel] {
+        return matchModels
+            .filter { $0.status == matchStatus.SCHEDULED }
+            .sorted { $0.matchDate.compare($1.matchDate as Date) == .orderedDescending }
+    }
+    
+    func sortFinishedMatches(matchModels: [MatchModel]) -> [MatchModel] {
+        return matchModels
+            .filter { $0.status == matchStatus.FINISHED }
+            .sorted { $0.matchDate.compare($1.matchDate as Date) == .orderedDescending }
+    }
 
+}
+
+enum matchStatus: String {
+    case FINISHED
+    case SCHEDULED
+    case unknown
+    
+    static func status(status: String) -> matchStatus {
+        switch status {
+        case "FINISHED":
+            return .FINISHED
+        case "SCHEDULED":
+            return .SCHEDULED
+        default:
+            return .unknown
+        }
+    }
 }
 
 class MatchModel {
@@ -40,13 +72,15 @@ class MatchModel {
     var awayTeam: String?
     var awayTeamScore: Int?
     var homeTeamScore: Int?
-    var matchDate: NSDate?
+    var status: matchStatus?
+    var matchDate: Date
 
-    init(homeTeam: String, awayTeam: String, awayTeamScore: Int, homeTeamScore: Int, matchDate: NSDate) {
+    init(homeTeam: String, awayTeam: String, awayTeamScore: Int, homeTeamScore: Int, matchDate: Date, status: matchStatus) {
         self.awayTeam = awayTeam
         self.homeTeam = homeTeam
         self.awayTeamScore = awayTeamScore
         self.homeTeamScore = homeTeamScore
         self.matchDate = matchDate
+        self.status = status
     }
 }
