@@ -1,7 +1,7 @@
 import UIKit
 
 class DateTodayFormatter {
-    func stringFromDate(date: NSDate?) -> String? {
+    func s(date: NSDate?) -> String? {
         guard let date = date else {
             return nil
         }
@@ -41,8 +41,6 @@ extension String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ssZZZ"
         return dateFormatter.date(from: formattedDateString)
-
-        //dateFromString(str: formattedDateString, withFormat:"yyyy-MM-dd'T'HH:mm:ss.SSSZ")
     }
     
     func dateFromString(str: String, withFormat dateFormat: String) -> NSDate? {

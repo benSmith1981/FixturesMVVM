@@ -9,7 +9,7 @@ struct Response: Codable {
 }
 
 struct Competition: Codable {
-    let name: Name
+    let name: String
 }
 
 struct Match: Codable {
@@ -56,10 +56,10 @@ class DataAccess {
                     return completionHandler(response)
                 } catch {
                     print("Unexpected error: JSON parsing error")
-                    return completionHandler([])
+                    return completionHandler(nil)
                 }
             } else {
-                return completionHandler([])
+                return completionHandler(nil)
             }
         }
     }
@@ -70,8 +70,7 @@ class DataAccess {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
                 let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
                 if let jsonResult = jsonResult as? Dictionary<String, AnyObject>{//,
-                   // let connections = jsonResult["matches"] as? [Any] {
-                    // do stuff
+
                     let jsonData = try JSONSerialization.data(withJSONObject: jsonResult, options: [])
                     
                     do {
@@ -81,12 +80,12 @@ class DataAccess {
                         onCompletion(response)
                         
                     } catch {
-                        onCompletion([])
+                        onCompletion(nil)
                     }
                 }
             } catch {
                 // handle error
-                onCompletion([])
+                onCompletion(nil)
                 
             }
         }

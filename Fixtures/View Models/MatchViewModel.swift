@@ -19,7 +19,7 @@ class MatchViewModel {
         let dataService = DataAccess.init()
         dataService.fetchFromStaticJSON{ (response) in
             self.matchModels = response?.matches.compactMap({ result in
-                return MatchModel.init(competition: response?.competition.name,
+                return MatchModel.init(competition: response?.competition.name ?? "",
                                        homeTeam: result.homeTeam.name,
                                        awayTeam: result.awayTeam.name,
                                        awayTeamScore: result.score.fullTime.awayTeam ?? -1,
@@ -70,7 +70,6 @@ enum matchStatus: String {
 
 class MatchModel {
     var competition: String?
-
     var homeTeam: String?
     var awayTeam: String?
     var awayTeamScore: Int?

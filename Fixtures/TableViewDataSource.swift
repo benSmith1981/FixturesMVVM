@@ -10,20 +10,14 @@ import Foundation
 import UIKit
 class TableViewDataSource <Cell: UITableViewCell, ViewModel> : NSObject, UITableViewDataSource, UITableViewDelegate{
     private var cellIdentifier: String!
-    private var headerCellIdentifier: String!
     var items:[ViewModel]!
     var configureCell:(Cell,ViewModel, IndexPath) -> ()
-    var configureHeaderCell:(Cell,ViewModel, Int) -> ()
 
-    init(headerCellIdentifier: String, cellIdentifier: String, items:[ViewModel], configureCell:@escaping (Cell,ViewModel, IndexPath) -> (), configureHeaderCell: @escaping (Cell,ViewModel, Int) -> ()) {
+    init(cellIdentifier: String, items:[ViewModel], configureCell:@escaping (Cell,ViewModel, IndexPath) -> ()) {
         self.cellIdentifier = cellIdentifier
         self.items = items
         self.configureCell = configureCell
-        self.headerCellIdentifier = headerCellIdentifier
-        self.configureHeaderCell = configureHeaderCell
     }
-    
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -39,12 +33,18 @@ class TableViewDataSource <Cell: UITableViewCell, ViewModel> : NSObject, UITable
         self.configureCell(cell, item, indexPath)
         return cell
     }
-//
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return "Test"
-//    }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+
+}
+
+class TableViewDelegate <Cell: UITableViewCell, ViewModel> : NSObject, UITableViewDelegate{
+    private var headerCellIdentifier: String!
+    var items:[ViewModel]!
+    var configureHeaderCell:(Cell,ViewModel, Int) -> ()
+
+    init(headerCellIdentifier: String, items:[ViewModel], configureHeaderCell: @escaping (Cell,ViewModel, Int) -> ()) {
+        self.items = items
+        self.headerCellIdentifier = headerCellIdentifier
+        self.configureHeaderCell = configureHeaderCell
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -53,5 +53,8 @@ class TableViewDataSource <Cell: UITableViewCell, ViewModel> : NSObject, UITable
         self.configureHeaderCell(matchHeaderCell, item, section)
         return matchHeaderCell
         
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
     }
 }
