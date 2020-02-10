@@ -39,7 +39,7 @@
 		193A015DF768C2FCEEEC9243 /* Pods-Fixtures.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fixtures.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fixtures/Pods-Fixtures.release.xcconfig"; sourceTree = "<group>"; };
 		2D7EDF1A26E818EA707D1F67 /* Pods_Fixtures.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fixtures.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E997DC7474396999B3A62F6 /* Pods-Fixtures.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fixtures.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fixtures/Pods-Fixtures.debug.xcconfig"; sourceTree = "<group>"; };
-		900C598823EDB6BA005188EC /* fixtures.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = fixtures.json; path = Fixtures/DataLayer/fixtures.json; sourceTree = SOURCE_ROOT; };
+		900C598823EDB6BA005188EC /* fixtures.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = fixtures.json; path = FixturesTests/fixtures.json; sourceTree = SOURCE_ROOT; };
 		900C598C23EF2884005188EC /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		900C598E23F1A37E005188EC /* MatchHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		900C599223F1A411005188EC /* MatchHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -90,6 +90,8 @@
 		900C599B23F1B215005188EC /* FixturesTests */ = {
 			isa = PBXGroup;
 			children = (
+				900C598823EDB6BA005188EC /* fixtures.json */,
+				900C59AB23F1D292005188EC /* testFixtures.json */,
 				900C599C23F1B215005188EC /* FixturesTests.swift */,
 				900C599E23F1B215005188EC /* Info.plist */,
 			);
@@ -125,8 +127,6 @@
 		90EF97C723E366EC00EA138A /* DataLayer */ = {
 			isa = PBXGroup;
 			children = (
-				900C59AB23F1D292005188EC /* testFixtures.json */,
-				900C598823EDB6BA005188EC /* fixtures.json */,
 				D8298DE3213D798100051654 /* DataAccess.swift */,
 			);
 			path = DataLayer;
@@ -169,12 +169,12 @@
 				90EF97C723E366EC00EA138A /* DataLayer */,
 				90EF97C223E34CDD00EA138A /* View Models */,
 				90EF97C023E3470B00EA138A /* TableViewDataSource.swift */,
+				D87E87D7213D6CF800D81EA0 /* FixturesViewController.swift */,
 				D87E87D5213D6CF800D81EA0 /* AppDelegate.swift */,
 				D87E87D9213D6CF800D81EA0 /* Main.storyboard */,
 				D87E87DC213D6CF900D81EA0 /* Assets.xcassets */,
 				D87E87DE213D6CF900D81EA0 /* LaunchScreen.storyboard */,
 				D87E87E1213D6CF900D81EA0 /* Info.plist */,
-				D87E87D7213D6CF800D81EA0 /* FixturesViewController.swift */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -537,6 +537,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CWK29L7ZPT;
 				INFOPLIST_FILE = Fixtures/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -555,6 +556,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CWK29L7ZPT;
 				INFOPLIST_FILE = Fixtures/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

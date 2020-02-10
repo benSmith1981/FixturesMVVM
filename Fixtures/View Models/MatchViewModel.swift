@@ -14,7 +14,7 @@ protocol ViewModel {
 }
 
 class MatchViewModel {
-    var matchModels: [MatchModel] = [MatchModel]()
+    private var matchModels: [MatchModel] = [MatchModel]()
     
     func getMatches(onCompletion: @escaping ([MatchModel], Bool) -> Void) {
         let dataService = DataAccess.init()

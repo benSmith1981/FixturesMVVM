@@ -42,7 +42,7 @@ enum UrlConnectionError: Error {
 
 class DataAccess {
 
-    var baseUrl: String
+    private var baseUrl: String
     
     init(baseURL: String = "http://api.football-data.org/v2/competitions/ELC/matches") {
         self.baseUrl = baseURL
