@@ -1,7 +1,7 @@
 import UIKit
 
 class DateTodayFormatter {
-    func s(date: NSDate?) -> String? {
+    func stringFromDate(date: NSDate?) -> String? {
         guard let date = date else {
             return nil
         }

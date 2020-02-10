@@ -33,6 +33,13 @@ struct FullTime: Codable {
     var awayTeam: Int?
 }
 
+enum UrlConnectionError: Error {
+    case invalid(String)
+    case connectionError(String)
+    case dataError(String)
+    case decodingError(String)
+}
+
 class DataAccess {
 
     var baseUrl: String
@@ -41,7 +48,7 @@ class DataAccess {
         self.baseUrl = baseURL
     }
 
-    func fetchMatches(completionHandler: @escaping ((Response?) -> Void)) {
+    func fetchMatches(completionHandler: @escaping ((Response?, UrlConnectionError?) -> Void)) {
         let headers: HTTPHeaders = [
             "X-Auth-Token": "3ee966f08dbd47fb8bf5c3d378d541a5"
         ]
@@ -53,18 +60,18 @@ class DataAccess {
                 let decoder = JSONDecoder()
                 do {
                     let response = try decoder.decode(Response.self, from: jsonData)
-                    return completionHandler(response)
+                    return completionHandler(response, nil)
                 } catch {
                     print("Unexpected error: JSON parsing error")
-                    return completionHandler(nil)
+                    return completionHandler(nil, .invalid(error.localizedDescription))
                 }
             } else {
-                return completionHandler(nil)
+                return completionHandler(nil, .dataError("Data response error"))
             }
         }
     }
     
-    func fetchFromStaticJSON(onCompletion: @escaping (Response?) -> Void) {
+    func fetchFromStaticJSON(onCompletion: @escaping (Response?,UrlConnectionError?) -> Void) {
         if let path = Bundle.main.path(forResource: "fixtures", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
@@ -77,15 +84,15 @@ class DataAccess {
                         let decoder = JSONDecoder()
                         let response = try decoder.decode(Response.self,
                                                                 from: jsonData )
-                        onCompletion(response)
+                        onCompletion(response, nil)
                         
                     } catch {
-                        onCompletion(nil)
+                        onCompletion(nil, .invalid(error.localizedDescription))
                     }
                 }
             } catch {
                 // handle error
-                onCompletion(nil)
+                onCompletion(nil, .dataError("Data response error"))
                 
             }
         }

@@ -17,7 +17,7 @@ class MatchViewModel {
     
     func getMatches(onCompletion: @escaping ([MatchModel], Bool) -> Void) {
         let dataService = DataAccess.init()
-        dataService.fetchFromStaticJSON{ (response) in
+        dataService.fetchMatches{ (response, errorMessage) in
             self.matchModels = response?.matches.compactMap({ result in
                 return MatchModel.init(competition: response?.competition.name ?? "",
                                        homeTeam: result.homeTeam.name,

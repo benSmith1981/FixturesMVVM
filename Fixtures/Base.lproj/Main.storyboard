@@ -12,7 +12,7 @@
         <!--Fixtures View Controller-->
         <scene sceneID="c6w-X7-96G">
             <objects>
-                <tableViewController id="9wS-Px-NBe" customClass="FixturesViewController" customModule="Fixtures" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FixturesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9wS-Px-NBe" customClass="FixturesViewController" customModule="Fixtures" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="132" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Sbi-QZ-EHC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

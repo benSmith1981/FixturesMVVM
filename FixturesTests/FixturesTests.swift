@@ -7,20 +7,105 @@
 //
 
 import XCTest
+@testable import Fixtures
 
 class FixturesTests: XCTestCase {
+    var fixturesVC: FixturesViewController!
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc: FixturesViewController = storyboard.instantiateViewController(withIdentifier: "FixturesViewController") as! FixturesViewController
+        fixturesVC = vc
+        _ = fixturesVC.view // To call viewDidLoad
+        
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testDataLayerWithInvalidURL() {
+        // other setup
+        let exp = expectation(description: "Check we get some data")
+        var error: UrlConnectionError!
+        var matches: [Match] = []
+        
+        DataAccess(baseURL: "www..xdfsd.com").fetchMatches { (response, errorMessage) in
+            exp.fulfill()
+            error = errorMessage
+            matches = response?.matches ?? []
+        }
+        
+        waitForExpectations(timeout: 10) { error in
+            if let error = error {
+                XCTFail("waitForExpectationsWithTimeout errored: \(error)")
+            }
+            XCTAssertTrue(matches.isEmpty)
+            XCTAssert(error == nil, "\(error?.localizedDescription ?? "")")
+            
+        }
+    }
+    
+    func testTableViewDelegateSetupProperly() {
+        let model2 = MatchModel.init(competition: "test", homeTeam: "", awayTeam: "", awayTeamScore: 0, homeTeamScore: 0, matchDate: Date(), status: .FINISHED)
+        
+        let datasource = TableViewDataSource.init(cellIdentifier: "fixture", items: [model2], configureCell: { (cell, item, indexPath) in
+            print(item.competition)
+        })
+        let delegate = TableViewDelegate.init(headerCellIdentifier: "MatchHeaderTableViewCell", items: [model2]) { (cell, items, section) in
+        }
+        self.fixturesVC.tableView.dataSource = datasource
+        self.fixturesVC.tableView.delegate = delegate
+        fixturesVC.tableView.reloadData()
+
+        XCTAssertNotNil( self.fixturesVC.tableView.delegate, "Have a header")
+        
+    }
+    
+    func testTableViewDatasourceSetupProperlyWith2Sections() {
+        let model1 = MatchModel.init(competition: "test", homeTeam: "", awayTeam: "", awayTeamScore: 0, homeTeamScore: 0, matchDate: Date(), status: .FINISHED)
+        let model2 = MatchModel.init(competition: "test", homeTeam: "", awayTeam: "", awayTeamScore: 0, homeTeamScore: 0, matchDate: Date(), status: .FINISHED)
+        
+        let datasource = TableViewDataSource.init(cellIdentifier: "fixture", items: [model1,model2], configureCell: { (cell, item, indexPath) in
+            print(item.competition)
+        })
+        
+        fixturesVC.tableView.dataSource = datasource
+        fixturesVC.tableView.reloadData()
+        XCTAssert(fixturesVC.tableView.numberOfSections == 2)
+
+        
+    }
+        
+    func testTableViewDatasourceSetupProperlyWith1rows() {
+
+        let models = MatchModel.init(competition: "test", homeTeam: "", awayTeam: "", awayTeamScore: 0, homeTeamScore: 0, matchDate: Date(), status: .FINISHED)
+
+        let datasource = TableViewDataSource.init(cellIdentifier: "fixture", items: [models], configureCell: { (cell, item, indexPath) in
+            print(item.competition)
+        })
+        fixturesVC.tableView.dataSource = datasource
+        fixturesVC.tableView.reloadData()
+        XCTAssert(fixturesVC.tableView.numberOfSections == 1)
+    }
+    
+    func getTestData() {
+        let exp = expectation(description: "Check we get some data")
+        let connectionService = DataAccess.init()
+        connectionService.fetchMatches { (response, connection) in
+            exp.fulfill()
+        }
+    }
+    
+    func testWeGetData() {
+        // other setup
+        getTestData()
+        waitForExpectations(timeout: 10) { error in
+            if let error = error {
+                XCTFail("waitForExpectationsWithTimeout errored: \(error)")
+            }
+            XCTAssertTrue(self.fixturesVC.matchModels.count > 0)
+        }
     }
 
     func testPerformanceExample() {

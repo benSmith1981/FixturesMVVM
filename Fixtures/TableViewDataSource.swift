@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-class TableViewDataSource <Cell: UITableViewCell, ViewModel> : NSObject, UITableViewDataSource, UITableViewDelegate{
+class TableViewDataSource <Cell: UITableViewCell, ViewModel> : NSObject, UITableViewDataSource {
     private var cellIdentifier: String!
     var items:[ViewModel]!
     var configureCell:(Cell,ViewModel, IndexPath) -> ()
