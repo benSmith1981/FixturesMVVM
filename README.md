@@ -13,7 +13,9 @@ I spent a lot of time getting used to MVVM structure and checking it worked, so 
 
 - What bugs did you find but not fix?
 
-There was a problem with layout of the text. Constraints. List was very very long so hard to see the scheduled results, but focussed on code more than fixing. Perhaps some things not in the  JSON
+There was a problem with layout of the text. Constraints.
+List was very very long so hard to see the scheduled results, but focussed on code more than fixing. Perhaps some things not in the  JSON.
+The shields didnt have an asset in the JSON feed.
 
 - What would you change about the visual design of the app?
 
